@@ -1,0 +1,21 @@
+# Dependências: Ignora node_modules em qualquer subdiretório
+**/node_modules
+
+**/.next
+
+/.next
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Variáveis de Ambiente (Sempre ignorar informações secretas)
+.env
+.env.local
+.env.*.local
+
+# Build e Output (Pode ser ajustado conforme seu framework)
+/dist
+/build
