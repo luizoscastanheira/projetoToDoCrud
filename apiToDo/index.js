@@ -16,7 +16,7 @@ console.log("Host:", process.env.DATABASE_HOST);
 console.log("Port:", process.env.DATABASE_PORT);
 console.log(port)
 
-import { CreateTodo, UpdateTodosStatus, ReadTodos, ReadTodosId, DeleteTodo } from "./database/crud.js";
+import { CreateTodo, UpdateTodosStatus, ReadTodos, ReadTodosId, DeleteTodo, UpdateTodosTitle } from "./database/crud.js";
 
 // Instanciando no express atribuindo-o à contante app
 const app = express(); 
@@ -49,6 +49,25 @@ app.post("/todos", async (req, res) => {
     const resposta = await CreateTodo(req.body.title, false);
     res.json(resposta)
 });
+
+// UPDATE - Atualizando o title de uma todo
+app.patch("/todos/:id", async (req, res) => {
+    const resposta = await UpdateTodosTitle(req.params.id, req.body.title)
+    res.json(resposta)
+});
+
+// UPDATE - Atualizando o status de uma todo
+app.patch("/todos/status/:id", async (req, res) => {
+    const resposta = await UpdateTodosStatus(req.params.id, req.body.completed)
+    res.json(resposta)
+});
+
+// DELETE - Deletando uma todo
+app.delete("/todos/:id", async (req, res) => {
+    const resposta = await DeleteTodo(req.params.id);
+    res.json(resposta);
+});
+
 
 // Configuração de portas
 app.listen(port, ()=>{

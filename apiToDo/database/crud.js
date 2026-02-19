@@ -79,7 +79,17 @@ export async function ReadTodosId(id) {
 export async function UpdateTodosStatus(id, completed) {
   try {
     await sql`UPDATE todos set completed = ${completed} WHERE id = ${id};`;
-    return 'To-do concluida.';
+    return 'To-do concluida - Atualizada com sucesso.';
+  } catch {
+    return 'Erro ao concluir a to-do - não atualizada.';
+  };
+};
+
+// UPDATE - Atualizando o title de uma to-do através de seu id
+export async function UpdateTodosTitle(id, title) {
+  try {
+    await sql`UPDATE todos set title = ${title} WHERE id = ${id};`;
+    return 'To-do concluida - Atualizada com sucesso.';
   } catch {
     return 'Erro ao concluir a to-do - não atualizada.';
   };
